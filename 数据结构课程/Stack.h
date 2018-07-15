@@ -1,4 +1,6 @@
 #pragma once
+#include <exception>
+#include <assert.h>
 template<class T, int SIZE = 10>
 class Stack// 该堆栈为数组实现，可能在堆中剩余空间较小时发生动态内存分配失败，可用链表实现加以解决
 {
@@ -27,8 +29,8 @@ inline Stack<T, SIZE>::Stack():
 }
 
 template<class T, int SIZE>
-inline Stack<T, capacity>::Stack(const Stack & stack):
-	ptr(new T[stack.capacity])
+inline Stack<T, SIZE>::Stack(const Stack & stack):
+	ptr(new T[stack.SIZE])
 {
 	for (size_t i = 0; i < stack.number; i++) {
 		ptr[i] = stack.ptr[i];
@@ -64,6 +66,11 @@ inline void Stack<T, SIZE>::push(const T & data) const
 template<class T, int SIZE>
 inline T Stack<T, SIZE>::pop() const
 {
+	//if (empty()) {
+	//	throw "the stack is empty!";
+	//	// 此处需要修改抛出异常的代码
+	//}
+	assert(number != 0);
 	--number;
 	return ptr[number];
 }

@@ -1,19 +1,17 @@
 #include <iostream>
 #include "List.h"
-#include <list>
+#include "Stack.h"
+#include "Queue.h"
 
 int main() {
-	const std::list<int>::iterator i;
-	List<int> l;
-	l.insert(2);
-	l.insert(3);
-	l.insert(3);
-	l.insert(5);
-	l.insert(2);
-	l.insert(45);
-	l.erase(3);
-	l.show();
-	std::cout << l.find(45) << std::endl;
+	List<int>::const_iterator i;
+	Queue<int> que;
+	que.push(3);
+	que.push(4);
+	std::cout << que.front() << std::endl;
+	std::cout << que.pop() << std::endl;
+	std::cout << que.getNumber() << std::endl;
+	std::cout << que.empty() << std::endl;
 	system("pause");
 	return 0;
 }

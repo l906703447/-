@@ -1,32 +1,19 @@
 #pragma once
-#include <assert.h>
-
 template <class T>
-class List
-{
-protected:
+class BaseList {// head等成员设为protected，子类继承时用protected继承
 	struct Node {
 		T _data;
 		Node* _next;
-		Node()noexcept{}
-		explicit Node(const T& data) : _data(data), _next(nullptr){}
+		Node()noexcept {}
+		explicit Node(const T& data) : _data(data), _next(nullptr) {}
 	};
-public:
+
 	class iterator {
 	public:
-		iterator(): pNode(nullptr){}
-		iterator(Node* p) : pNode(p){}
+		iterator() : pNode(nullptr) {}
+		iterator(Node* p) : pNode(p) {}
 		T & operator*() {
 			return pNode->_data;
-		}
-		const iterator operator+(size_t step) {
-			for (size_t i = 0; i < step; i++) {
-				assert(pNode != _end);
-				/*if (pNode == _end) {
-					throw invalid_argument("the step exceeded the length of this List")
-				}*/
-				pNode = pNode->_next;
-			}
 		}
 		const iterator&& operator++() {
 			pNode = pNode->_next;
@@ -43,8 +30,8 @@ public:
 
 	class const_iterator {
 	public:
-		const_iterator() : pNode(nullptr){}
-		const_iterator(Node* p) : pNode(p){}
+		const_iterator() : pNode(nullptr) {}
+		const_iterator(Node* p) : pNode(p) {}
 		const T&& operator*() {
 			return pNode->_data;
 		}
@@ -53,18 +40,17 @@ public:
 			return const_iterator(pNode);
 		}
 		const const_iterator&& operator++(int) {
-			const_iterator tmp{ *this };
+			const const_iterator tmp{ *this };
 			++(*this);
 			return tmp;
 		}
 	private:
 		Node * pNode;
 	};
-
 public:
-	List();
-	List(const List&& l);
-	virtual ~List();
+	BaseList();
+	BaseList(const BaseList&& l);
+	virtual ~BaseList();
 	iterator begin()const;
 	void insert(const T& data);
 	void insert(const T& data, size_t index);
@@ -73,9 +59,9 @@ public:
 	bool find(const T& val)const;	// find the index of the first one 
 	void show()const;
 	void update(size_t index, const T& val);
-	bool empty()const;
-	size_t getNumber()const;
-protected:
+	size_t getNumber();
+	friend class Queue;
+private:
 	size_t _number = 0;
 	Node* _head;
 	Node* _tail;
@@ -83,9 +69,9 @@ protected:
 };
 
 template<class T>
-inline List<T>::List() :
+inline BaseList<T>::BaseList() :
 	_head(new Node),
-	_tail(_head), 
+	_tail(_head),
 	_end(new Node)
 {
 	_head->_next = _end;
@@ -93,32 +79,32 @@ inline List<T>::List() :
 }
 
 template<class T>
-inline List<T>::List(const List && l):
-	List()
+inline BaseList<T>::BaseList(const BaseList && l) :
+	BaseList()
 {
-	for (List<T>::const_iterator j = l._head; j->_next != l._end; j++) {
+	for (BaseList<T>::const_iterator j = l._head; j->_next != l._end; j++) {
 		insert(*(j->_next));
 	}
-	
+
 }
 
 template<class T>
-inline List<T>::~List()
+inline BaseList<T>::~BaseList()
 {
 	for (Node* p = _head, *q = _head->_next; p->_next; p = q, q = q->_next) {
-		delete p;		
+		delete p;
 	}
 	_number = 0;
 }
 
 template<class T>
-inline typename List<T>::iterator List<T>::begin() const
+inline typename BaseList<T>::iterator BaseList<T>::begin() const
 {
 	return ++iterator(_head);
 }
 
 template<class T>
-inline void List<T>::insert(const T & data)
+inline void BaseList<T>::insert(const T & data)
 {
 	_tail->_next = new Node(data);
 	_tail = _tail->_next;
@@ -127,7 +113,7 @@ inline void List<T>::insert(const T & data)
 }
 
 template<class T>
-inline void List<T>::insert(const T & data, size_t index)
+inline void BaseList<T>::insert(const T & data, size_t index)
 {
 	Node* p = _head;
 	for (size_t i = 0; i < index - 1; i++) {
@@ -140,7 +126,7 @@ inline void List<T>::insert(const T & data, size_t index)
 }
 
 template<class T>
-inline void List<T>::erase(const T & val)
+inline void BaseList<T>::erase(const T & val)
 {
 	_end->_data = val;
 	Node* p = _head;
@@ -164,11 +150,11 @@ inline void List<T>::erase(const T & val)
 		p = p->_next;
 		q = p->_next;
 	}
-	
+
 }
 
 template<class T>
-inline const T & List<T>::at(size_t index) const
+inline const T & BaseList<T>::at(size_t index) const
 {
 	Node* p = _head;
 	for (size_t i = 0; i < index; i++) {
@@ -178,7 +164,7 @@ inline const T & List<T>::at(size_t index) const
 }
 
 template<class T>
-inline bool List<T>::find(const T & val) const
+inline bool BaseList<T>::find(const T & val) const
 {
 	_end->_data = val;
 	Node* p = _head;
@@ -196,7 +182,7 @@ inline bool List<T>::find(const T & val) const
 }
 
 template<class T>
-inline void List<T>::show() const
+inline void BaseList<T>::show() const
 {
 	for (Node* p = _head; p->_next != _end; p = p->_next) {
 		std::cout << p->_next->_data << std::endl;
@@ -204,19 +190,16 @@ inline void List<T>::show() const
 }
 
 template<class T>
-inline void List<T>::update(size_t index, const T & val)
+inline void BaseList<T>::update(size_t index, const T & val)
 {
 	const_cast<T&>(at(index)) = val;
 }
 
 template<class T>
-inline bool List<T>::empty() const
-{
-	return _number == 0;
-}
-
-template<class T>
-inline size_t List<T>::getNumber()const
+inline size_t BaseList<T>::getNumber()
 {
 	return _number;
 }
+
+
+};
