@@ -30,6 +30,12 @@
     <ClInclude Include="BaseList.h">
       <Filter>源文件</Filter>
     </ClInclude>
+    <ClInclude Include="Base_BinTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="BinSearchTree.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="List.cpp">
@@ -42,6 +48,12 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="Queue.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="Base_BinTree.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="BinSearchTree.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -17,25 +17,40 @@ public:
 		iterator(): pNode(nullptr){}
 		iterator(Node* p) : pNode(p){}
 		T & operator*() {
+			
 			return pNode->_data;
 		}
-		const iterator operator+(size_t step) {
+		const iterator next()const {
+			return pNode->_next;
+		}
+		const iterator operator+(size_t step) const{
+			auto ptmp = pNode;
 			for (size_t i = 0; i < step; i++) {
-				assert(pNode != _end);
+				//assert(pNode != _end);
 				/*if (pNode == _end) {
 					throw invalid_argument("the step exceeded the length of this List")
 				}*/
-				pNode = pNode->_next;
+				ptmp = ptmp->_next;
 			}
+			return iterator(ptmp);
 		}
-		const iterator&& operator++() {
+		const iterator operator++() {
 			pNode = pNode->_next;
 			return iterator(pNode);
 		}
-		const iterator&& operator++(int) {
+		const iterator operator++(int) {
 			iterator tmp{ *this };
 			++(*this);
 			return tmp;
+		}
+		bool operator==(const iterator& that)const {
+			return this->pNode == that.pNode;
+		}
+		bool operator!=(const iterator& that)const {
+			return !(this->pNode == that.pNode);
+		}
+		static void operator delete(void*) {
+			delete pNode;
 		}
 	private:
 		Node * pNode;
@@ -66,9 +81,11 @@ public:
 	List(const List&& l);
 	virtual ~List();
 	iterator begin()const;
+	iterator end()const;
 	void insert(const T& data);
 	void insert(const T& data, size_t index);
 	void erase(const T& val);
+	void erase(const iterator& it);
 	const T& at(size_t index)const;// index begins from one
 	bool find(const T& val)const;	// find the index of the first one 
 	void show()const;
@@ -115,6 +132,12 @@ template<class T>
 inline typename List<T>::iterator List<T>::begin() const
 {
 	return ++iterator(_head);
+}
+
+template<class T>
+inline typename List<T>::iterator List<T>::end() const
+{
+	return iterator(_end);
 }
 
 template<class T>
@@ -168,13 +191,26 @@ inline void List<T>::erase(const T & val)
 }
 
 template<class T>
+inline void List<T>::erase(const iterator & it)
+{
+	//assert(bool found = false, true);
+	for (Node* p = _head,*q = _head->_next; q != _end; p++, q++) {
+		if (it == iterator(q)) {
+			p->_next = q->_next;
+			delete q;
+			break;
+		}
+	}
+}
+
+template<class T>
 inline const T & List<T>::at(size_t index) const
 {
 	Node* p = _head;
 	for (size_t i = 0; i < index; i++) {
 		p = p->_next;
 	}
-	return *p;
+	return (*p)._data;
 }
 
 template<class T>
