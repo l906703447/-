@@ -9,12 +9,13 @@ public:
 	void inTravasal();
 	void levelTravasal();
 
-protected:
+
 	struct Node 
 	{
-		Node* left;
 		int data;
+		Node* left;
 		Node* right;
+		int height;
 	};
 	void preTravasal(Node* p); // 尚未加入函数指针或函数对象
 	void postTravasal(Node* p, void(*pf)(Node&));

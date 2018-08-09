@@ -8,7 +8,7 @@ protected:
 	struct Node {
 		T _data;
 		Node* _next;
-		Node()noexcept{}
+		Node()noexcept : _data(T()), _next(nullptr){}
 		explicit Node(const T& data) : _data(data), _next(nullptr){}
 	};
 public:
@@ -90,7 +90,7 @@ public:
 	bool find(const T& val)const;	// find the index of the first one 
 	void show()const;
 	void update(size_t index, const T& val);
-	bool empty()const;
+	virtual bool empty()const;
 	size_t getNumber()const;
 protected:
 	size_t _number = 0;

@@ -53,7 +53,7 @@ void Base_BinTree::levelTravasal()
 
 void Base_BinTree::preTravasal(Node * p)
 {
-	if (!p) {
+	if (p) {
 		std::cout << p->data << std::endl;
 		preTravasal(p->left);
 		preTravasal(p->right);
@@ -62,7 +62,7 @@ void Base_BinTree::preTravasal(Node * p)
 
 void Base_BinTree::postTravasal(Node * p, void (*pf)(Node&))
 {
-	if (!p) {
+	if (p) {
 		postTravasal(p->left, pf);
 		postTravasal(p->right, pf);
 		pf(*p);
@@ -71,7 +71,7 @@ void Base_BinTree::postTravasal(Node * p, void (*pf)(Node&))
 
 void Base_BinTree::inTravasal(Node * p)
 {
-	if (!p) {
+	if (p) {
 		inTravasal(p->left);
 		std::cout << p->data << std::endl;
 		inTravasal(p->right);

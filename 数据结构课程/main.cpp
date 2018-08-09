@@ -15,7 +15,7 @@ std::ostream& operator<<(std::ostream& os, const PolyNode& ob) {
 }
 
 int main() {
-	List<PolyNode> p1, p2;
+	/*List<PolyNode> p1, p2;
 	size_t size1, size2;
 	std::cin >> size1;
 	for (size_t i = 0; i < size1; i++) {
@@ -49,7 +49,21 @@ int main() {
 			std::cout << std::endl;
 		}
 	}
-	mul.show();
+	mul.show();*/
+
+	struct s1
+	{
+		char c;
+		char i;
+		int ii;
+	};
+	struct s2
+	{
+		char i;
+		int c;
+		char ii;
+	};
+	std::cout << sizeof s1 <<  " " << sizeof s2;
 	system("pause");
 	return 0;
 }

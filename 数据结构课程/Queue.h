@@ -7,7 +7,7 @@ class Queue : private List<T>
 public:
 	Queue();
 	virtual ~Queue();
-	bool empty()const;
+	virtual bool empty()const;
 	void push(const T& data);
 	T pop();
 	T front()const;

@@ -8,14 +8,15 @@ class BinSearchTree :
 public:
 	BinSearchTree();
 	virtual ~BinSearchTree();
-	BinTree insert();
+	virtual BinTree insert(int val);
 	BinTree find(int val)const;
 	BinTree findMax()const;
 	BinTree findMin()const;
-	BinTree remove(int x);
+	virtual void remove(int x);
 private:
-	BinTree insert(BinTree bst);
+	BinTree findMax(BinTree bst)const;
+	virtual BinTree insert(int val, BinTree bst); 
 	BinTree find(int val, BinTree bst)const;
-	BinTree remove(BinTree bst,ElementType x);
+	BinTree remove(ElementType val, BinTree bst);
 };
 
