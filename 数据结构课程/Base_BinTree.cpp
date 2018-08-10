@@ -3,7 +3,7 @@
 #include "Queue.h"
 
 
-Base_BinTree::Base_BinTree() : 
+Base_BinTree::Base_BinTree()noexcept : 
 	root{0}
 {
 }
@@ -49,6 +49,16 @@ void Base_BinTree::levelTravasal()
 		}
 	}
 	
+}
+
+int Base_BinTree::getHeight(Node * pNode)
+{
+	if (!pNode) {
+		return 0;
+	}
+	else {
+		return pNode->height;
+	}
 }
 
 void Base_BinTree::preTravasal(Node * p)

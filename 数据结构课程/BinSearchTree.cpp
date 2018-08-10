@@ -2,7 +2,7 @@
 
 
 
-BinSearchTree::BinSearchTree()
+BinSearchTree::BinSearchTree()noexcept
 {
 }
 

@@ -66,10 +66,6 @@ inline void Stack<T, SIZE>::push(const T & data) const
 template<class T, int SIZE>
 inline T Stack<T, SIZE>::pop() const
 {
-	//if (empty()) {
-	//	throw "the stack is empty!";
-	//	// 此处需要修改抛出异常的代码
-	//}
 	assert(number != 0);
 	--number;
 	return ptr[number];

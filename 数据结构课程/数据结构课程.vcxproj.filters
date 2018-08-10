@@ -39,6 +39,9 @@
     <ClInclude Include="AVL_Tree.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="MaxHeap.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="List.cpp">
@@ -60,6 +63,9 @@
       <Filter>源文件</Filter>
     </ClCompile>
     <ClCompile Include="AVL_Tree.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="MaxHeap.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

@@ -6,7 +6,7 @@ class AVL_Tree :
 {
 	
 public:
-	AVL_Tree();
+	AVL_Tree()noexcept;
 	virtual ~AVL_Tree();
 	virtual AVLTree insert(int val) override;
 private:

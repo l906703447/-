@@ -6,7 +6,7 @@ class BinSearchTree :
 	public Base_BinTree
 {
 public:
-	BinSearchTree();
+	BinSearchTree()noexcept;
 	virtual ~BinSearchTree();
 	virtual BinTree insert(int val);
 	BinTree find(int val)const;

@@ -124,6 +124,7 @@
     <ClInclude Include="Base_BinTree.h" />
     <ClInclude Include="BinSearchTree.h" />
     <ClInclude Include="List.h" />
+    <ClInclude Include="MaxHeap.h" />
     <ClInclude Include="Queue.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Stack.h" />
@@ -134,6 +135,7 @@
     <ClCompile Include="BinSearchTree.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="MaxHeap.cpp" />
     <ClCompile Include="Queue.cpp" />
     <ClCompile Include="Stack.cpp" />
   </ItemGroup>

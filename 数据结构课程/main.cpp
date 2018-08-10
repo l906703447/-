@@ -2,6 +2,7 @@
 #include "List.h"
 #include "Stack.h"
 #include "Queue.h"
+#include "AVL_Tree.h"
 
 struct PolyNode
 {
@@ -50,20 +51,16 @@ int main() {
 		}
 	}
 	mul.show();*/
-
-	struct s1
-	{
-		char c;
-		char i;
-		int ii;
-	};
-	struct s2
-	{
-		char i;
-		int c;
-		char ii;
-	};
-	std::cout << sizeof s1 <<  " " << sizeof s2;
+	AVL_Tree av;
+	av.insert(55);
+	av.insert(34);
+	av.insert(67);
+	av.insert(57);
+	av.insert(66);
+	std::cout << "inorder : " << std::endl;
+	av.inTravasal();
+	std::cout << "preorder : " << std::endl;
+	av.preTravasal();
 	system("pause");
 	return 0;
 }

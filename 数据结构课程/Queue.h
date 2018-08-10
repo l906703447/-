@@ -5,7 +5,7 @@ template <class T>
 class Queue : private List<T>
 {
 public:
-	Queue();
+	Queue()noexcept;
 	virtual ~Queue();
 	virtual bool empty()const;
 	void push(const T& data);
@@ -16,7 +16,7 @@ public:
 };
 
 template<class T>
-inline Queue<T>::Queue()
+inline Queue<T>::Queue()noexcept
 {
 }
 

@@ -77,7 +77,7 @@ public:
 	};
 
 public:
-	List();
+	List()noexcept;
 	List(const List&& l);
 	virtual ~List();
 	iterator begin()const;
@@ -100,7 +100,7 @@ protected:
 };
 
 template<class T>
-inline List<T>::List() :
+inline List<T>::List()noexcept :
 	_head(new Node),
 	_tail(_head), 
 	_end(new Node)
