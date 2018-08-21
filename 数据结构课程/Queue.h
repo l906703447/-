@@ -10,7 +10,7 @@ public:
 	virtual bool empty()const;
 	void push(const T& data);
 	T pop();
-	T front()const;
+	T& front()const;
 	size_t getNumber()const;
 	
 };
@@ -50,7 +50,7 @@ inline T Queue<T>::pop()
 }
 
 template<class T>
-inline T Queue<T>::front() const
+inline T& Queue<T>::front() const
 {
 	return (*(this->_head->_next))._data;
 }

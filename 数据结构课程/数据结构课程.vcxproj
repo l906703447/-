@@ -123,6 +123,7 @@
     <ClInclude Include="BaseList.h" />
     <ClInclude Include="Base_BinTree.h" />
     <ClInclude Include="BinSearchTree.h" />
+    <ClInclude Include="MatrixGraph.h" />
     <ClInclude Include="List.h" />
     <ClInclude Include="MaxHeap.h" />
     <ClInclude Include="Queue.h" />
@@ -133,6 +134,7 @@
     <ClCompile Include="AVL_Tree.cpp" />
     <ClCompile Include="Base_BinTree.cpp" />
     <ClCompile Include="BinSearchTree.cpp" />
+    <ClCompile Include="MatrixGraph.cpp" />
     <ClCompile Include="List.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="MaxHeap.cpp" />

@@ -113,8 +113,8 @@ BinTree BinSearchTree::remove(ElementType val, BinTree bst)
 		BinTree tmp = bst;
 		if (bst->left && bst->right) { // both have left and right child
 			tmp = findMax(bst->left);
-			bst->data = tmp->data; // replace bst with the max of left child tree
-			bst->left = remove(bst->data, bst->left); // remove max of "bst->left"
+			bst->data = tmp->data; // replace bst with the getFront of left child tree
+			bst->left = remove(bst->data, bst->left); // remove getFront of "bst->left"
 		}
 		else if (!bst->left) {
 			bst = bst->right;
